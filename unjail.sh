@@ -27,23 +27,23 @@ for (( ;; )); do
 					expect eof")
 				for (( timer=30; timer>0; timer-- ))
 				do
-								printf "* sleep for ${RED}%02d${NC} sec\r" $timer
-								sleep 1
+					printf "* sleep for ${RED}%02d${NC} sec\r" $timer
+					sleep 1
 				done
 
 				JAIL=$(namadac validator-state --validator ${VALIDATOR_ADDRESS} | grep "is jailed");
 				if [[ "${JAIL}" == "" ]]; then
-						echo -e "${GREEN}Node is still jailed${NC}\n"
+					echo -e "${GREEN}Node is still jailed${NC}\n"
 				else
-						echo -e "${GREEN}Node unjailed${NC}\n"
+					echo -e "${GREEN}Node unjailed${NC}\n"
 				fi
 		else
-				echo -e "Node isn't sync. Waiting... \n"
+			echo -e "Node isn't sync. Waiting... \n"
 		fi
 	fi
 	for (( timer=${DELAY}; timer>0; timer-- ))
 	do
-			printf "* sleep for ${RED}%02d${NC} sec\r" $timer
-			sleep 1
+		printf "* sleep for ${RED}%02d${NC} sec\r" $timer
+		sleep 1
 	done
 done
