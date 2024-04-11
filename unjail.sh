@@ -2,8 +2,7 @@
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
-NODE="http://127.0.0.1:26657/status"
-WALLET_NAME="<>"
+NODE="http://127.0.0.1:26657"
 VALIDATOR_ADDRESS="<>"
 MEMO="<>"
 DELAY=3600 #Delay time in seconds
@@ -18,7 +17,7 @@ for (( ;; )); do
             echo -e "${GREEN}Jailed: false${NC}\n"
         else
             echo -e "${GREEN}Jailed: true${NC}\n"
-			CATCHING_UP=$(curl http://127.0.0.1:26657/status |  jq -r '.result.sync_info.catching_up')
+			CATCHING_UP=$(curl ${NODE}/status |  jq -r '.result.sync_info.catching_up')
 			if [[ ${CATCHING_UP} == *"false"* ]]; then
 				echo -e "Node is sync. Trying to unjail. \n"
 				$(expect -c "set timeout -1
